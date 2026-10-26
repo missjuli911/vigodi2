@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; connect-src 'none'; img-src data: blob:; media-src data: blob:; font-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; form-action 'none'">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TL: Ключ — Семь направлений пользы для отеля</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --tl-blue: #3564EB;
+      --tl-blue-light: #edf2fe;
+      --tl-blue-hover: #2651cc;
+      --tl-text: #1f2937;
+      --tl-subtext: #5f6368;
+      --tl-border: #e5e7eb;
+      --tl-bg: #ffffff;
+      --tl-accent-amber: #f59e0b;
+      --tl-box-bg: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background-color: var(--tl-bg);
+      color: var(--tl-text);
+      padding: 24px 16px;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    /* Двухколоночный макет: меню слева, контент сбоку */
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 860px) {
+      .layout-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Левая панель меню */
+    .nav-panel {
+      background: #ffffff;
+      border: 1px solid var(--tl-border);
+      border-radius: 16px;
+      padding: 10px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-item {
+      padding: 12px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+      user-select: none;
+      background: #ffffff;
+    }
+
+    .nav-item:hover {
+      background: #f8fafc;
+    }
+
+    /* Активный выбранный блок — синий #3564EB */
+    .nav-item.active {
+      background: var(--tl-blue);
+      border-color: var(--tl-blue);
+      box-shadow: 0 4px 12px rgba(53, 100, 235, 0.25);
+    }
+
+    .nav-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1e293b;
+      line-height: 1.25;
+      transition: color 0.2s ease;
+    }
+
+    .nav-item.active .nav-title {
+      color: #ffffff;
+    }
+
+    .nav-desc {
+      font-size: 12px;
+      color: var(--tl-subtext);
+      margin-top: 3px;
+      line-height: 1.35;
+      transition: color 0.2s ease;
+    }
+
+    .nav-item.active .nav-desc {
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    /* Правая панель */
+    .content-panel {
+      background: #ffffff;
+      border: 1px solid var(--tl-border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      min-height: 560px;
+    }
+
+    .section-view {
+      display: none;
+      animation: fadeIn 0.15s ease forwards;
+    }
+
+    .section-view.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(2px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Заголовки разделов синим цветом */
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--tl-blue);
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--tl-border);
+      padding-bottom: 12px;
+    }
+
+    .lead-card {
+      background: var(--tl-box-bg);
+      border: 1px solid var(--tl-border);
+      border-left: 4px solid var(--tl-blue);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: #1e293b;
+    }
+
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    @media (max-width: 600px) {
+      .card-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-tile {
+      background: #ffffff;
+      border: 1px solid var(--tl-border);
+      border-radius: 10px;
+      padding: 14px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    .info-tile-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--tl-blue);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .info-tile-text {
+      font-size: 13px;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .timeline-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 14px 0 18px;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #ffffff;
+      border: 1px solid var(--tl-border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .timeline-badge {
+      background: var(--tl-blue-light);
+      color: var(--tl-blue);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      margin-top: 1px;
+    }
+
+    .timeline-content {
+      font-size: 14px;
+      color: #334155;
+    }
+
+    .alert-box {
+      background: #ffffff;
+      border: 1px solid var(--tl-accent-amber);
+      border-left: 4px solid var(--tl-accent-amber);
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #92400e;
+      margin: 16px 0;
+    }
+
+    .alert-box strong {
+      font-weight: 700;
+    }
+
+    .tabs-instruction {
+      font-size: 13px;
+      color: var(--tl-subtext);
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .tabs-row {
+      display: flex;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 16px;
+      gap: 6px;
+    }
+
+    .tab-btn {
+      padding: 10px 16px;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--tl-subtext);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.15s ease;
+    }
+
+    .tab-btn.active {
+      color: var(--tl-blue);
+      border-bottom-color: var(--tl-blue);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.15s ease forwards;
+    }
+
+    /* Блок вопросов */
+    .quiz-section {
+      margin-top: 28px;
+      padding: 20px 22px;
+      background: #f6f8fe;
+      border: 1px solid #d4e0fc;
+      border-left: 5px solid var(--tl-blue);
+      border-radius: 12px;
+    }
+
+    .quiz-heading {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--tl-blue);
+      margin-bottom: 12px;
+    }
+
+    .question-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 12px;
+    }
+
+    .options-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .opt-btn {
+      text-align: left;
+      padding: 10px 14px;
+      border: 1px solid #d4e0fc;
+      border-radius: 8px;
+      background: #ffffff;
+      font-family: inherit;
+      font-size: 13px;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .opt-btn:hover {
+      background: #ffffff;
+      border-color: var(--tl-blue);
+      box-shadow: 0 2px 6px rgba(53, 100, 235, 0.12);
+    }
+
+    .opt-btn.correct {
+      background: #f0fdf4 !important;
+      border-color: #86efac !important;
+      color: #166534 !important;
+      font-weight: 600;
+    }
+
+    .opt-btn.wrong {
+      background: #fef2f2 !important;
+      border-color: #fca5a5 !important;
+      color: #991b1b !important;
+    }
+
+    .quiz-result-msg {
+      display: none;
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+
+    .btn-continue {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      background: var(--tl-blue);
+      color: #ffffff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-continue:hover {
+      background: var(--tl-blue-hover);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="layout-grid">
+    <!-- Левая панель: выбор блока -->
+    <div class="nav-panel">
+      <div class="nav-item active" onclick="goToSection(0)">
+        <div class="nav-title">Привлечь гостя</div>
+        <div class="nav-desc">Дополнительный поток прямых бронирований</div>
+      </div>
+
+      <div class="nav-item" onclick="goToSection(1)">
+        <div class="nav-title">Сохранить доход</div>
+        <div class="nav-desc">Снижение расходов на комиссии</div>
+      </div>
+
+      <div class="nav-item" onclick="goToSection(2)">
+        <div class="nav-title">Заработать больше</div>
+        <div class="nav-desc">Рост среднего чека за счет продажи дополнительных услуг</div>
+      </div>
+
+      <div class="nav-item" onclick="goToSection(3)">
+        <div class="nav-title">Вернуть гостя</div>
+        <div class="nav-desc">Стимулирование повторных бронирований</div>
+      </div>
+
+      <div class="nav-item" onclick="goToSection(4)">
+        <div class="nav-title">Сохранить контакт</div>
+        <div class="nav-desc">Прямой контакт с гостем на протяжении всей поездки</div>
+      </div>
+
+      <div class="nav-item" onclick="goToSection(5)">
+        <div class="nav-title">Упростить работу</div>
+        <div class="nav-desc">Запуск без дополнительных трудозатрат</div>
+      </div>
+
+      <div class="nav-item" onclick="goToSection(6)">
+        <div class="nav-title">Стать частью сети</div>
+        <div class="nav-desc">Сетевой эффект</div>
+      </div>
+    </div>
+
+    <!-- Правая панель: контент сбоку -->
+    <div class="content-panel">
+
+      <!-- 1. ДОПОЛНИТЕЛЬНЫЙ ПОТОК ПРЯМЫХ БРОНИРОВАНИЙ -->
+      <div class="section-view active" id="sec-0">
+        <h2>Дополнительный поток прямых бронирований</h2>
+        
+        <div class="lead-card">
+          Отель получает возможность представить себя потенциальным гостям за пределами собственного сайта и принимать прямые бронирования. Это расширяет присутствие отеля в цифровой среде и создает потенциал для привлечения гостей в отель.
+        </div>
+
+        <div class="info-tile">
+          <div class="info-tile-title">Персонализация предложений</div>
+          <p style="margin-bottom: 10px;">Также приложение показывает гостям разные описания одного и того же отеля в зависимости от предполагаемой цели путешествия: например, романтический уикенд, отдых с детьми или деловая поездка. Предусмотрено десять вариантов описания.</p>
+          <p>Это позволяет одному и тому же объекту быть представленным разным гостям с разными описаниями, сформированными автоматически под их предпочтения, и повысить привлекательность своего предложения.</p>
+        </div>
+
+        <div class="quiz-section">
+          <div class="quiz-heading">Проверь себя. Ответь на вопросы.</div>
+          <div class="question-text">Сколько вариантов описания отеля под разные цели путешествия предусмотрено в приложении?</div>
+          <div class="options-group">
+            <button class="opt-btn" onclick="answerQuestion(0, this, false)">Три варианта описания</button>
+            <button class="opt-btn" onclick="answerQuestion(0, this, true)">Десять вариантов описания</button>
+            <button class="opt-btn" onclick="answerQuestion(0, this, false)">Описание всегда одно и не меняется</button>
+          </div>
+          <div class="quiz-result-msg" id="qmsg-0"></div>
+          <button class="btn-continue" onclick="nextSection(0)">Продолжить</button>
+        </div>
+      </div>
+
+      <!-- 2. СНИЖЕНИЕ РАСХОДОВ НА КОМИССИИ -->
+      <div class="section-view" id="sec-1">
+        <h2>Снижение расходов на комиссии</h2>
+
+        <div class="lead-card">
+          Комиссия за бронирование — один из факторов, влияющих на доходность отеля. Комиссия TL: Ключ ниже комиссии OTA.
+        </div>
+
+        <div class="card-grid-2">
+          <div class="info-tile">
+            <div class="info-tile-title">На период закрытого пилота</div>
+            <div class="info-tile-text">
+              Комиссия за бронирования через TL: Ключ соответствует ставке отеля за модуль бронирования TravelLine.<br><br>
+              <strong>Например:</strong> если ставка отеля за модуль бронирования TravelLine составляет 2,5%, такая же ставка будет применяться к бронированиям через TL: Ключ на период пилота.
+            </div>
+          </div>
+          <div class="info-tile">
+            <div class="info-tile-title">После завершения пилота</div>
+            <div class="info-tile-text">
+              Комиссия за TL: Ключ будет составлять <strong>4% для всех средств размещения</strong>.
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--tl-box-bg); border-radius: 8px; padding: 12px 14px; font-size: 13px; color: #334155; margin-bottom: 12px;">
+          Услуги интернет-эквайринга отелем оплачиваются отдельно.
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid var(--tl-border); border-radius: 8px; padding: 12px 14px; font-size: 13px; color: #334155;">
+          Бронирования, которые прошли через приложение TL: Ключ отель может посмотреть в личном кабинете TravelLine в разделе <strong>«Документооборот» — «Отчете по броням»</strong>.
+        </div>
+
+        <div class="quiz-section">
+          <div class="quiz-heading">Проверь себя. Ответь на вопросы.</div>
+          <div class="question-text">Какой размер комиссии за TL: Ключ будет составлять для всех средств размещения после завершения пилота?</div>
+          <div class="options-group">
+            <button class="opt-btn" onclick="answerQuestion(1, this, false)">Сохранится ставка отеля 2,5%</button>
+            <button class="opt-btn" onclick="answerQuestion(1, this, true)">4% для всех средств размещения</button>
+            <button class="opt-btn" onclick="answerQuestion(1, this, false)">Комиссия будет как у OTA</button>
+          </div>
+          <div class="quiz-result-msg" id="qmsg-1"></div>
+          <button class="btn-continue" onclick="nextSection(1)">Продолжить</button>
+        </div>
+      </div>
+
+      <!-- 3. РОСТ СРЕДНЕГО ЧЕКА -->
+      <div class="section-view" id="sec-2">
+        <h2>Рост среднего чека за счет продажи дополнительных услуг</h2>
+
+        <div class="lead-card">
+          Благодаря TL: Ключ взаимодействие отеля с гостем не заканчивается в момент бронирования. На разных этапах поездки у гостя возникают новые потребности, и отель может предложить гостю приобрести подходящие услуги. Это создает возможность увеличить доход от дополнительных продаж и средний чек по брони.
+        </div>
+
+        <div style="font-weight: 600; font-size: 13px; color: #475569; margin: 12px 0 6px;">Например:</div>
+        
+        <div class="timeline-list">
+          <div class="timeline-item">
+            <span class="timeline-badge">до заезда</span>
+            <div class="timeline-content">трансфер или ранний заезд;</div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-badge">во время проживания</span>
+            <div class="timeline-content">завтрак, спа-процедуры или другие услуги;</div>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-badge">перед выездом</span>
+            <div class="timeline-content">поздний выезд.</div>
+          </div>
+        </div>
+
+        <div class="info-tile">
+          <div class="info-tile-title">Закрытый пилот</div>
+          <div class="info-tile-text">
+            На период закрытого пилота комиссия за услуги, которые гость приобретает через мобильное приложение также соответствует комиссии за модуль бронирования TravelLine. Это связано с тем, что продажи услуг осуществляются через TL: Services, входящий в состав модуля бронирования.
+          </div>
+        </div>
+
+        <div class="quiz-section">
+          <div class="quiz-heading">Проверь себя. Ответь на вопросы.</div>
+          <div class="question-text">Через какой сервис осуществляются продажи дополнительных услуг в мобильном приложении TL: Ключ?</div>
+          <div class="options-group">
+            <button class="opt-btn" onclick="answerQuestion(2, this, true)">Через TL: Services, входящий в состав модуля бронирования</button>
+            <button class="opt-btn" onclick="answerQuestion(2, this, false)">Через сторонние внешние сервисы</button>
+            <button class="opt-btn" onclick="answerQuestion(2, this, false)">Исключительно через звонок на стойку ресепшн</button>
+          </div>
+          <div class="quiz-result-msg" id="qmsg-2"></div>
+          <button class="btn-continue" onclick="nextSection(2)">Продолжить</button>
+        </div>
+      </div>
+
+      <!-- 4. СТИМУЛИРОВАНИЕ ПОВТОРНЫХ БРОНИРОВАНИЙ -->
+      <div class="section-view" id="sec-3">
+        <h2>Стимулирование повторных бронирований</h2>
+
+        <div class="lead-card">
+          На площадке TL: Ключей при бронировании отелей гости могут пользоваться преимуществами программы лояльности конкретного отеля и сквозной программы лояльности TL: Ключей.<br><br>
+          Так гости получают дополнительный стимул выбирать участвующие в программе лояльности объекты, а отели — удерживать и привлекать новых гостей.
+        </div>
+
+        <div style="font-weight: 700; margin-bottom: 6px;">Важно различать программы лояльности:</div>
+        <div class="tabs-instruction">Нажимай на вкладки, чтобы ознакомиться с информацией.</div>
+
+        <div class="tabs-row">
+          <button class="tab-btn active" onclick="switchTab(0, this)">Сквозная программа лояльности TL: Ключей</button>
+          <button class="tab-btn" onclick="switchTab(1, this)">Программа лояльности конкретного отеля</button>
+        </div>
+
+        <div class="tab-content active" id="tab-0">
+          <div class="info-tile" style="margin-bottom: 12px;">
+            <p style="margin-bottom: 8px;">Позволяет копить баллы за поездки и использовать их при последующих бронированиях через TL: Ключ в любом из отелей.</p>
+            <p style="margin-bottom: 8px;">Отель сам решает, включать ли сквозную программу лояльности. Если отель загружен, то функцию можно отключить в 1 клик. Если нужна дополнительная загрузка — отельер сам задает лимит списания баллов (например, не более 10–15% от чека).</p>
+            <p style="margin-bottom: 8px;">Отель ставит отметку об участии в сквозной программе лояльности в личном кабинете TravelLine.</p>
+            <p>Благодаря гибкой настройке инструмента отель управляет потоком гостей без необходимости тратить бюджет на внешнюю рекламу и без риска потерять доход в пиковые даты.</p>
+          </div>
+        </div>
+
+        <div class="tab-content" id="tab-1">
+          <div class="info-tile" style="margin-bottom: 12px;">
+            <p style="margin-bottom: 8px;">Действует по правилам этого отеля.</p>
+            <p style="margin-bottom: 8px;">Если у гостя есть персональная скидка, она может отображаться в приложении и учитываться при бронировании в соответствующем отеле.</p>
+            <div style="background: var(--tl-blue-light); color: var(--tl-blue); padding: 8px 12px; border-radius: 6px; font-weight: 600;">
+              Скидки/бонусы по программе лояльности отеля и по сквозной программе лояльности TL: Ключей суммируются.
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--tl-box-bg); border-radius: 8px; padding: 12px 14px; font-size: 13px; color: #334155; margin: 12px 0;">
+          Также в инструменте TL: Ключ предусмотрена публикация отзывов от гостей с Яндекс Путешествий и Островка независимо от подключения у отеля инструмента TL: Reputation. Это помогает гостям оценить репутацию отеля и принять решение о бронировании.
+        </div>
+
+        <div class="alert-box">
+          <strong>ВАЖНО:</strong> однако это не означает автоматическую публикацию отзывов, которые гости оставили в приложении TL: Ключ на всех внешних площадках.
+        </div>
+
+        <div class="quiz-section">
+          <div class="quiz-heading">Проверь себя. Ответь на вопросы.</div>
+          <div class="question-text">Означает ли показ отзывов с Яндекс Путешествий и Островка, что отзывы из TL: Ключ публикуются на всех внешних площадках?</div>
+          <div class="options-group">
+            <button class="opt-btn" onclick="answerQuestion(3, this, false)">Да, все отзывы из приложения автоматически попадают на Яндекс Путешествия и Островок</button>
+            <button class="opt-btn" onclick="answerQuestion(3, this, true)">Нет, однако это не означает автоматическую публикацию отзывов из TL: Ключ на всех внешних площадках</button>
+          </div>
+          <div class="quiz-result-msg" id="qmsg-3"></div>
+          <button class="btn-continue" onclick="nextSection(3)">Продолжить</button>
+        </div>
+      </div>
+
+      <!-- 5. ПРЯМОЙ КОНТАКТ С ГОСТЕМ -->
+      <div class="section-view" id="sec-4">
+        <h2>Прямой контакт с гостем на протяжении всей поездки</h2>
+
+        <div class="lead-card">
+          Мобильное приложение TL: Ключ создает точку контакта между отелем и гостем. Отель может использовать доступные инструменты сервиса для информирования гостя и коммуникации с ним даже при ограничениях интернета:
+        </div>
+
+        <div class="card-grid-2" style="margin-top: 0;">
+          <div class="info-tile">
+            <div class="info-tile-title">Каналы связи</div>
+            <ul style="padding-left: 18px; margin: 0; font-size: 13px; color: #334155;">
+              <li style="margin-bottom: 6px;">встроенный чат с отелем;</li>
+              <li style="margin-bottom: 6px;">push-уведомления только от отеля, в котором проживает гость;</li>
+              <li>спецпредложения, если гость добавил отель в «Избранное».</li>
+            </ul>
+          </div>
+          <div class="info-tile">
+            <div class="info-tile-title">Защита аудитории отеля</div>
+            <div class="info-tile-text">
+              Во время проживания гостя в отеле TL: Ключ предусматривает ограничение рекламы других объектов размещения.
+            </div>
+          </div>
+        </div>
+
+        <div class="alert-box">
+          <strong>ВАЖНО:</strong> категорически запрещено говорить, что «TravelLine находится в белых списках интернета». Лучше сказать, что «Инфраструктура TravelLine стабильно работает в том числе и при ограничениях интернета».
+        </div>
+
+        <div style="background: var(--tl-box-bg); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #475569;">
+          Это помогает поддерживать контакт с гостем за пределами момента бронирования.
+        </div>
+
+        <div class="quiz-section">
+          <div class="quiz-heading">Проверь себя. Ответь на вопросы.</div>
+          <div class="question-text">Как корректно формулировать работу сервиса при ограничениях связи?</div>
+          <div class="options-group">
+            <button class="opt-btn" onclick="answerQuestion(4, this, false)">«TravelLine находится в белых списках интернета»</button>
+            <button class="opt-btn" onclick="answerQuestion(4, this, true)">«Инфраструктура TravelLine стабильно работает в том числе и при ограничениях интернета»</button>
+          </div>
+          <div class="quiz-result-msg" id="qmsg-4"></div>
+          <button class="btn-continue" onclick="nextSection(4)">Продолжить</button>
+        </div>
+      </div>
+
+      <!-- 6. ЗАПУСК БЕЗ ДОПОЛНИТЕЛЬНЫХ ТРУДОЗАТРАТ -->
+      <div class="section-view" id="sec-5">
+        <h2>Запуск без дополнительных трудозатрат</h2>
+
+        <div class="lead-card">
+          После того как отель будет добавлен в TL: Ключ, ему не нужно будет осваивать отдельную систему для работы и вручную переносить контент.
+        </div>
+
+        <div class="info-tile">
+          <div class="info-tile-title">Автоматическая синхронизация</div>
+          <p style="margin-bottom: 10px;">
+            Основная информация об отеле: фотографии, описания категорий номеров, тарифы, доступность и специальные предложения подтягиваются напрямую из личного кабинета TravelLine.
+          </p>
+          <div style="background: var(--tl-blue-light); color: var(--tl-blue); padding: 8px 12px; border-radius: 6px; font-weight: 600; font-size: 13px; margin-bottom: 10px;">
+            Управление инструментом также остается в привычном личном кабинете TravelLine.
+          </div>
+          <p style="font-size: 13px; color: #475569;">
+            Это упрощает работу отеля с новым инструментом.
+          </p>
+        </div>
+
+        <div class="quiz-section">
+          <div class="quiz-heading">Проверь себя. Ответь на вопросы.</div>
+          <div class="question-text">Нужно ли отелю осваивать отдельную систему и вручную переносить контент?</div>
+          <div class="options-group">
+            <button class="opt-btn" onclick="answerQuestion(5, this, false)">Да, отель должен вручную заново заполнить все описания и тарифы в новой системе</button>
+            <button class="opt-btn" onclick="answerQuestion(5, this, true)">Нет, основная информация подтягивается напрямую из личного кабинета TravelLine</button>
+          </div>
+          <div class="quiz-result-msg" id="qmsg-5"></div>
+          <button class="btn-continue" onclick="nextSection(5)">Продолжить</button>
+        </div>
+      </div>
+
+      <!-- 7. СЕТЕВОЙ ЭФФЕКТ -->
+      <div class="section-view" id="sec-6">
+        <h2>Сетевой эффект</h2>
+
+        <div class="lead-card">
+          Независимому отелю трудно в одиночку соревноваться с бюджетами ИТ-гигантов. Но когда тысячи отелей на базе TravelLine объединяются в одном пространстве, возникает сетевой эффект.
+        </div>
+
+        <div class="info-tile">
+          <div class="info-tile-title">Модель коллективных прямых продаж</div>
+          <p style="margin-bottom: 8px;">
+            Чем больше отелей в приложении, тем полезнее инструмент для каждого из них. Это модель «коллективных прямых продаж»: независимый отель получает часть преимуществ большой сети.
+          </p>
+          <p style="font-weight: 600; color: #1e293b;">
+            Так отели получают доступ к лояльной аудитории друг друга без уплаты комиссий агрегаторам.
+          </p>
+        </div>
+
+        <div class="quiz-section">
+          <div class="quiz-heading">Проверь себя. Ответь на вопросы.</div>
+          <div class="question-text">В чем заключается модель «коллективных прямых продаж» в TL: Ключ?</div>
+          <div class="options-group">
+            <button class="opt-btn" onclick="answerQuestion(6, this, false)">Каждый отель рекламирует только себя и платит полную комиссию агрегаторам</button>
+            <button class="opt-btn" onclick="answerQuestion(6, this, true)">Тысячи отелей объединяются в одном пространстве и получают доступ к лояльной аудитории друг друга без уплаты комиссий агрегаторам</button>
+          </div>
+          <div class="quiz-result-msg" id="qmsg-6"></div>
+          <button class="btn-continue" onclick="nextSection(6)">Продолжить</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentIdx = 0;
+  const sections = document.querySelectorAll('.section-view');
+  const navItems = document.querySelectorAll('.nav-item');
+
+  function goToSection(index) {
+    currentIdx = index;
+    navItems.forEach((item, i) => {
+      item.classList.toggle('active', i === index);
+    });
+    sections.forEach((sec, i) => {
+      sec.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextSection(index) {
+    if (index < sections.length - 1) {
+      goToSection(index + 1);
+    } else {
+      alert('Обучение по всем семи направлениям успешно завершено!');
+    }
+  }
+
+  function switchTab(tabIndex, btn) {
+    const parent = btn.closest('.section-view');
+    parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.getElementById('tab-0').classList.toggle('active', tabIndex === 0);
+    document.getElementById('tab-1').classList.toggle('active', tabIndex === 1);
+  }
+
+  function answerQuestion(qIdx, btn, isCorrect) {
+    const section = document.getElementById('sec-' + qIdx);
+    const buttons = section.querySelectorAll('.opt-btn');
+    const msg = document.getElementById('qmsg-' + qIdx);
+
+    buttons.forEach(b => {
+      b.classList.remove('correct', 'wrong');
+    });
+
+    if (isCorrect) {
+      btn.classList.add('correct');
+      msg.style.display = 'block';
+      msg.style.background = '#f0fdf4';
+      msg.style.border = '1px solid #86efac';
+      msg.style.color = '#166534';
+      msg.innerHTML = '✓ <strong>Верно!</strong> Нажми «Продолжить», чтобы перейти к следующему направлению.';
+    } else {
+      btn.classList.add('wrong');
+      msg.style.display = 'block';
+      msg.style.background = '#fef2f2';
+      msg.style.border = '1px solid #fca5a5';
+      msg.style.color = '#991b1b';
+      msg.innerHTML = '✕ <strong>Неверно.</strong> Перечитай текст блока и выбери правильный ответ.';
+    }
+  }
+</script>
+</body>
+</html>
